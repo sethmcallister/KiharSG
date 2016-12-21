@@ -1,4 +1,5 @@
 xyz\sethy\sg\scoreboard\Scoreboard$ScoreboardText.class
+xyz\sethy\sg\listeners\EnderpearlListener.class
 xyz\sethy\sg\timers\TimerHandler.class
 xyz\sethy\sg\scoreboard\ScoreboardThread.class
 xyz\sethy\sg\scoreboard\Scoreboard.class

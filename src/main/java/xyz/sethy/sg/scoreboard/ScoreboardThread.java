@@ -23,7 +23,7 @@ public class ScoreboardThread implements xyz.sethy.threads.Thread
     @Override
     public void execute()
     {
-        for(Player player : Bukkit.getOnlinePlayers())
+        for(Player player : Main.getInstance().getPlayers())
         {
             Scoreboard scoreboard = Main.getInstance().getScoreboardHandler().getScoreboard(player);
             if(scoreboard == null)
@@ -39,6 +39,7 @@ public class ScoreboardThread implements xyz.sethy.threads.Thread
             scoreboard.clear();
             scoreboard.add(translateString("&7&m-----------"), translateString("&7&m-----------"));
             scoreboard.add(translateString(Main.getInstance().getGameState().getDisplayName()), "");
+            scoreboard.add(translateString("&9&lPlayers:"), Main.getInstance().getOnline().get() + "");
 
 
             if(timerHandler.hasTimer(player, TimerType.PVP_TIMER))

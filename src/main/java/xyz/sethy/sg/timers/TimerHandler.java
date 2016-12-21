@@ -35,15 +35,16 @@ public class TimerHandler
                 activeTimers.add(timer);
             }
         }
+        this.timers.offer(player, activeTimers);
         return activeTimers;
     }
 
-    public boolean addTimer(Timer timer, Player player)
+    public void addTimer(Timer timer, Player player)
     {
-        boolean result = false;
-        this.timers.get(player).add(timer);
-        result = true;
-        return result;
+        LinkedList<Timer> currentActiveTimers = new LinkedList<>();
+        currentActiveTimers.addAll(getActiveTimers(player));
+        currentActiveTimers.add(timer);
+        this.timers.offer(player, currentActiveTimers);
     }
 
     public Timer getTimerByType(Player player, TimerType timerType)
