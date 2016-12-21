@@ -12,11 +12,15 @@ import xyz.sethy.sg.Main;
 import xyz.sethy.sg.timers.Timer;
 import xyz.sethy.sg.timers.TimerType;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * Created by sethm on 21/12/2016.
  */
 public class EnderpearlListener implements Listener
 {
+    private final ConcurrentHashMap<Player, Long> timers = new ConcurrentHashMap<>();
+
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerInteract(final PlayerInteractEvent event)
     {
@@ -35,7 +39,8 @@ public class EnderpearlListener implements Listener
                     event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou cannot use this for another &l" + sec + " seconds&c."));
                     return;
                 }
-                Main.getInstance().getTimerHandler().addTimer(player, new Timer(TimerType.ENDERPEARL, 16000 + System.currentTimeMillis(), player));
+                Main.getInstance().getTimerHandler().addTimer(new Timer(TimerType.ENDERPEARL, 16000 + System.currentTimeMillis(), player), player);
+                this.timers.put(player, 16000 + System.currentTimeMillis());
             }
         }
     }
